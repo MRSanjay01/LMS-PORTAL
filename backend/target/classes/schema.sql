@@ -1,0 +1,71 @@
+CREATE DATABASE IF NOT EXISTS aura_lms_db;
+USE aura_lms_db;
+
+CREATE TABLE IF NOT EXISTS users (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role VARCHAR(50) NOT NULL,
+    status VARCHAR(50) DEFAULT 'ACTIVE',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS departments (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    code VARCHAR(50) UNIQUE NOT NULL,
+    head_id BIGINT,
+    FOREIGN KEY (head_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS subjects (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    code VARCHAR(50) UNIQUE NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    credits INT NOT NULL,
+    teacher_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS units (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    subject_id BIGINT NOT NULL,
+    unit_number INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_subject_unit (subject_id, unit_number)
+);
+
+CREATE TABLE IF NOT EXISTS materials (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    unit_id BIGINT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    url VARCHAR(500) NOT NULL,
+    size VARCHAR(50) NOT NULL,
+    uploaded_at VARCHAR(100) NOT NULL,
+    uploaded_by VARCHAR(255) NOT NULL,
+    FOREIGN KEY (unit_id) REFERENCES units(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS submissions (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    assignment_id BIGINT NOT NULL,
+    student_name VARCHAR(255) NOT NULL,
+    student_roll VARCHAR(100) NOT NULL,
+    subject_code VARCHAR(50) NOT NULL,
+    file_url VARCHAR(500) NOT NULL,
+    submitted_at VARCHAR(100) NOT NULL,
+    marks INT NULL,
+    feedback TEXT NULL,
+    graded BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS announcements (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    subject_code VARCHAR(50) NULL,
+    title VARCHAR(255) NOT NULL,
+    body TEXT NOT NULL,
+    posted_by VARCHAR(255) NOT NULL,
+    posted_at VARCHAR(100) NOT NULL
+);
