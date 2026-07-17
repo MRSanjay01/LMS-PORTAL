@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aura University Learning Management System (LMS) Administration Controls Dashboard.">
+  <title>Aura University LMS - Console Board</title>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Shared Style + Dashboard style -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <!-- Fullscreen Transition Overlay -->
+  <div id="transition-overlay" class="page-transition-overlay"></div>
+
+  <!-- Ambient Animated Background -->
+  <div class="bg-ambient">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="bg-grid"></div>
+
+  <!-- Main Dashboard Grid Layout -->
+  <div class="dashboard-wrapper">
+    
+    <!-- Sidebar Navigation -->
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">
+          <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M12 8v8"/>
+            <path d="M9 11h6"/>
+          </svg>
+          <span class="logo-text">AURA UNIV</span>
+        </div>
+        <button id="sidebar-collapse-btn" class="sidebar-collapse-btn" aria-label="Collapse sidebar">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebar-nav-container">
+        <span class="nav-section-title">Core Modules</span>
+        <ul class="nav-links">
+          <li class="nav-item active">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-gauge"></i>
+              <span class="nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-building"></i>
+              <span class="nav-text">Departments</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-chalkboard-user"></i>
+              <span class="nav-text">Teachers</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-user-graduate"></i>
+              <span class="nav-text">Students</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-book"></i>
+              <span class="nav-text">Subjects</span>
+            </a>
+          </li>
+        </ul>
+
+        <span class="nav-section-title">Academic Settings</span>
+        <ul class="nav-links">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-calendar-days"></i>
+              <span class="nav-text">Academic Years</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span class="nav-text">Semesters</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <ul class="nav-links">
+          <li class="nav-item logout">
+            <a href="#" id="logout-trigger" class="nav-link">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              <span class="nav-text">Logout</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- Main Workspace -->
+    <div id="main-content" class="main-content">
+      
+      <!-- Top Navigation Bar -->
+      <header class="top-navbar">
+        <div class="nav-left">
+          <button id="mobile-sidebar-toggle" class="mobile-sidebar-toggle" aria-label="Toggle Sidebar Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <div class="top-nav-logo">
+            <svg class="logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <span class="logo-text">LMS Console</span>
+          </div>
+        </div>
+
+        <div class="nav-center">
+          <div class="search-bar-container">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="search-input" class="search-input" placeholder="Search departments, schedules, records...">
+          </div>
+        </div>
+
+        <div class="nav-right">
+          <!-- Notification Bell -->
+          <div class="notification-wrapper">
+            <button id="notification-btn" class="nav-icon-btn" aria-label="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="notification-badge"></span>
+            </button>
+            <div id="notification-dropdown" class="notification-dropdown">
+              <div class="dropdown-header">
+                <h5>Notifications</h5>
+                <button class="clear-notifications-btn">Mark read</button>
+              </div>
+              <ul class="notification-list">
+                <li class="notification-item unread">
+                  <div class="notification-dot"></div>
+                  <div class="notification-content">
+                    <p>New academic semester registration has started.</p>
+                    <span>10 minutes ago</span>
+                  </div>
+                </li>
+                <li class="notification-item unread">
+                  <div class="notification-dot"></div>
+                  <div class="notification-content">
+                    <p>Standard backups successfully generated.</p>
+                    <span>1 hour ago</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- User Profile Dropdown -->
+          <div class="user-profile-wrapper">
+            <button id="profile-dropdown-btn" class="profile-nav-btn">
+              <div id="profile-avatar-container" class="profile-avatar">
+                <!-- SVG initials or letters are dynamically rendered here -->
+                <span id="profile-initials">AD</span>
+              </div>
+              <div class="profile-name-details">
+                <span id="profile-username" class="profile-username">Dean Aura</span>
+                <span id="profile-role" class="profile-role">LMS Admin</span>
+              </div>
+              <i class="fa-solid fa-chevron-down caret-icon"></i>
+            </button>
+            <div id="profile-dropdown" class="profile-dropdown-card">
+              <div class="profile-info-header">
+                <p id="profile-drop-username">Dean Aura</p>
+                <span id="profile-drop-role">Administrator</span>
+              </div>
+              <ul class="profile-dropdown-links">
+                <li><a href="#"><i class="fa-regular fa-user"></i> My Profile</a></li>
+                <li><a href="#"><i class="fa-solid fa-gear"></i> System Settings</a></li>
+                <li class="dropdown-divider"></li>
+                <li><a href="#" id="profile-logout-btn" class="logout-link"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Operational Console Panel -->
+      <main class="console-body">
+        <div id="console-view-wrapper" class="console-view-wrapper">
+        
+        <!-- Welcome Jumbotron -->
+        <section class="welcome-section">
+          <div class="welcome-text">
+            <span class="subtitle-badge">Academic Console</span>
+            <h2 class="welcome-title">System Status Overview</h2>
+            <p class="welcome-desc">Institutional operational statistics and quick actions directory.</p>
+          </div>
+          <div class="welcome-date" id="live-date">
+            <i class="fa-regular fa-calendar-check"></i>
+            July 5, 2026
+          </div>
+        </section>
+
+        <!-- Four Main Statistics Cards -->
+        <section class="stats-grid" id="stats-grid-container">
+          <div class="stat-card">
+            <div class="stat-card-glow"></div>
+            <div class="stat-icon-wrapper cyan">
+              <i class="fa-solid fa-building"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Departments</span>
+              <h3 class="stat-value">12</h3>
+            </div>
+            <div class="stat-percentage positive">
+              <i class="fa-solid fa-arrow-up-right"></i>
+              <span>Live Node</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-glow"></div>
+            <div class="stat-icon-wrapper blue">
+              <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Teachers</span>
+              <h3 class="stat-value">148</h3>
+            </div>
+            <div class="stat-percentage positive">
+              <i class="fa-solid fa-arrow-up-right"></i>
+              <span>Active</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-glow"></div>
+            <div class="stat-icon-wrapper purple">
+              <i class="fa-solid fa-user-graduate"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Students</span>
+              <h3 class="stat-value">3,842</h3>
+            </div>
+            <div class="stat-percentage positive">
+              <i class="fa-solid fa-plus"></i>
+              <span>24 New</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-glow"></div>
+            <div class="stat-icon-wrapper pink">
+              <i class="fa-solid fa-book"></i>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Subjects</span>
+              <h3 class="stat-value">280</h3>
+            </div>
+            <div class="stat-percentage positive">
+              <i class="fa-solid fa-check"></i>
+              <span>Syllabus Sync</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Lower Section Content: Quick Actions & Log Activities -->
+        <div class="actions-activities-layout">
+          
+          <!-- Column 1: Quick Actions Cards -->
+          <section class="ops-section">
+            <h4 class="section-heading">Quick Actions</h4>
+            <div class="quick-actions-grid" id="quick-actions-container">
+              
+              <button class="action-card" data-action="Add Department">
+                <div class="action-icon-box cyan">
+                  <i class="fa-solid fa-building-circle-plus"></i>
+                </div>
+                <div class="action-details">
+                  <h5>Add Department</h5>
+                  <p>Register new academic faculties</p>
+                </div>
+                <i class="fa-solid fa-circle-plus action-add-btn"></i>
+              </button>
+
+              <button class="action-card" data-action="Add Teacher">
+                <div class="action-icon-box blue">
+                  <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <div class="action-details">
+                  <h5>Add Teacher</h5>
+                  <p>Register faculty and assign subjects</p>
+                </div>
+                <i class="fa-solid fa-circle-plus action-add-btn"></i>
+              </button>
+
+              <button class="action-card" data-action="Add Student">
+                <div class="action-icon-box purple">
+                  <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div class="action-details">
+                  <h5>Add Student</h5>
+                  <p>Enroll student records & assign sections</p>
+                </div>
+                <i class="fa-solid fa-circle-plus action-add-btn"></i>
+              </button>
+
+              <button class="action-card" data-action="Add Subject">
+                <div class="action-icon-box pink">
+                  <i class="fa-solid fa-book-medical"></i>
+                </div>
+                <div class="action-details">
+                  <h5>Add Subject</h5>
+                  <p>Add new module to course list</p>
+                </div>
+                <i class="fa-solid fa-circle-plus action-add-btn"></i>
+              </button>
+
+            </div>
+          </section>
+
+          <!-- Column 2: Recent Activity Timeline -->
+          <section class="activity-section">
+            <h4 class="section-heading">Recent System Activity</h4>
+            <div class="activity-card">
+              <ul class="activity-timeline" id="activity-timeline-container">
+                
+                <li class="activity-timeline-item">
+                  <div class="activity-icon-badge color-cyan">
+                    <i class="fa-solid fa-user-tie"></i>
+                  </div>
+                  <div class="activity-content">
+                    <div class="activity-meta">
+                      <h6>Teacher added</h6>
+                      <span class="activity-time">10m ago</span>
+                    </div>
+                    <p>Dr. Helen Vance assigned to Computer Science Department.</p>
+                  </div>
+                </li>
+
+                <li class="activity-timeline-item">
+                  <div class="activity-icon-badge color-purple">
+                    <i class="fa-solid fa-user-graduate"></i>
+                  </div>
+                  <div class="activity-content">
+                    <div class="activity-meta">
+                      <h6>Student registered</h6>
+                      <span class="activity-time">32m ago</span>
+                    </div>
+                    <p>User Alice Smith completed enrollment to Engineering Section A.</p>
+                  </div>
+                </li>
+
+                <li class="activity-timeline-item">
+                  <div class="activity-icon-badge color-pink">
+                    <i class="fa-solid fa-book"></i>
+                  </div>
+                  <div class="activity-content">
+                    <div class="activity-meta">
+                      <h6>Subject created</h6>
+                      <span class="activity-time">2h ago</span>
+                    </div>
+                    <p>Course "Quantum Mechanics-III" synced with grading structures.</p>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </section>
+
+        </div>
+        </div>
+
+      </main>
+
+      <!-- Dashboard Footer -->
+      <footer class="portal-footer">
+        <p class="portal-footer-text">&copy; 2026 Learning Management System. All rights reserved.</p>
+      </footer>
+
+    </div>
+
+  </div>
+
+  <!-- Toast Popup system -->
+  <div id="toast-root" class="toast-container"></div>
+
+  <!-- Dashboard interactive JavaScript -->
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

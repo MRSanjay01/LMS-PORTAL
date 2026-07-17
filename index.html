@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Access your personalized Student Learning Management System (LMS) workspace. Connect with courses, tracking, and university updates.">
+  <title>Aura University LMS - Student Portal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Fullscreen Page Loader/Transition Overlay -->
+  <div id="transition-overlay" class="page-transition-overlay"></div>
+
+  <!-- Ambient Animated Gradient Particles -->
+  <div class="bg-ambient">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="bg-grid"></div>
+
+  <!-- Main Login Workspace -->
+  <main class="portal-container">
+    <div id="login-container-card" class="portal-wrapper">
+      
+      <!-- Panel 1: Interactive University Branding & Info -->
+      <section class="brand-panel">
+        <div class="brand-bg-pattern"></div>
+        
+        <div class="brand-header">
+          <div class="brand-logo-container">
+            <!-- Modern University Shield Badge SVG -->
+            <svg class="brand-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M12 8v8"/>
+              <path d="M9 11h6"/>
+            </svg>
+            <span class="brand-logo-text">AURA UNIV</span>
+          </div>
+        </div>
+
+        <div class="brand-body">
+          <div class="brand-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>
+            Student & Faculty
+          </div>
+          <h1 class="brand-title">Empower Your <span>Academic Journey</span></h1>
+          <p class="brand-desc">Unlock classes, assignments, collaborative research and online libraries in one consolidated learning hub.</p>
+          
+          <!-- Interactive Mock Stats Dashboard -->
+          <div class="brand-ui-mockup">
+            <div class="mockup-header">
+              <div class="mockup-dots">
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+              </div>
+              <span class="mockup-title">Sys Metrics</span>
+            </div>
+            <div class="mockup-stats">
+              <div class="mockup-stat-card">
+                <span class="stat-label">Active Enrolled Students</span>
+                <span class="stat-value cyan-glow">12,480+</span>
+              </div>
+              <div class="mockup-stat-card">
+                <span class="stat-label">System Uptime</span>
+                <span class="stat-value">99.98%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="brand-footer">
+          <p class="brand-footer-text">Protected by Active-Shield Verification</p>
+        </div>
+      </section>
+
+      <!-- Panel 2: Portal Login Form -->
+      <section class="form-panel">
+        <header class="form-header">
+          <div class="role-badge-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 21a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><path d="M12 2v2"/></svg>
+            Student / Teacher
+          </div>
+          <h2 class="form-title">Portal Login</h2>
+          <p class="form-subtitle">Enter your academic credentials to unlock portal access.</p>
+        </header>
+
+        <form id="student-login-form" class="login-form" novalidate>
+          
+          <!-- Input Field: Roll Number or Email -->
+          <div class="form-group">
+            <input type="text" id="student-identifier" name="identifier" class="form-input" placeholder=" " required autocomplete="username">
+            <label for="student-identifier" class="form-label">
+              <!-- Inline User/File icon -->
+              <svg class="form-label-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              Roll Number or Email
+            </label>
+          </div>
+
+          <!-- Input Field: Password -->
+          <div class="form-group">
+            <input type="password" id="student-password" name="password" class="form-input has-eye" placeholder=" " required autocomplete="current-password">
+            <label for="student-password" class="form-label">
+              <!-- Inline Lock icon -->
+              <svg class="form-label-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+              </svg>
+              Password
+            </label>
+            <button type="button" id="password-toggle" class="password-toggle-btn" aria-label="Toggle Password Visibility">
+              <!-- Eye open icon (default) -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+            <div id="caps-lock-warning" class="caps-lock-warning">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                <line x1="12" y1="9" x2="12" y2="13"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+              Caps Lock is enabled
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="submit-login" class="submit-btn" aria-label="Log in to portal">
+            <span class="submit-btn-text">Log In</span>
+            <!-- Arrow Right icon -->
+            <svg class="submit-btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+            <div class="btn-spinner"></div>
+          </button>
+        </form>
+
+        <!-- Dynamic Page Switching -->
+        <div class="role-switch-container">
+          <p class="role-switch-text">
+            Are you an administrator?
+            <a href="admin.html" id="switch-to-admin" class="role-switch-link">
+              Admin Portal
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </p>
+        </div>
+      </section>
+      
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="portal-footer">
+    <p class="portal-footer-text">&copy; 2026 Learning Management System. All rights reserved.</p>
+  </footer>
+
+  <!-- Toast Feedbacks -->
+  <div id="toast-root" class="toast-container"></div>
+
+  <!-- Shared behaviors & transitions script -->
+  <script src="js/app.js"></script>
+</body>
+</html>
